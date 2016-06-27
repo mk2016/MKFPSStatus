@@ -16,6 +16,7 @@
 		C5CF97C51D20F8FB0027BA3B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C5CF97BC1D20F8FB0027BA3B /* Info.plist */; };
 		C5CF97C61D20F8FB0027BA3B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C5CF97BD1D20F8FB0027BA3B /* main.m */; };
 		C5CF97C71D20F8FB0027BA3B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5CF97BF1D20F8FB0027BA3B /* ViewController.m */; };
+		C5CF97CC1D20FA780027BA3B /* MKFPSStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = C5CF97CB1D20FA780027BA3B /* MKFPSStatus.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		C5CF97BD1D20F8FB0027BA3B /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = MKFPSStatusDemo/main.m; sourceTree = SOURCE_ROOT; };
 		C5CF97BE1D20F8FB0027BA3B /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		C5CF97BF1D20F8FB0027BA3B /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C5CF97CA1D20FA780027BA3B /* MKFPSStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKFPSStatus.h; sourceTree = "<group>"; };
+		C5CF97CB1D20FA780027BA3B /* MKFPSStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKFPSStatus.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,8 @@
 		C5CF978D1D20F8400027BA3B /* MKFPSStatus */ = {
 			isa = PBXGroup;
 			children = (
+				C5CF97CA1D20FA780027BA3B /* MKFPSStatus.h */,
+				C5CF97CB1D20FA780027BA3B /* MKFPSStatus.m */,
 			);
 			path = MKFPSStatus;
 			sourceTree = "<group>";
@@ -235,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5CF97C71D20F8FB0027BA3B /* ViewController.m in Sources */,
+				C5CF97CC1D20FA780027BA3B /* MKFPSStatus.m in Sources */,
 				C5CF97C61D20F8FB0027BA3B /* main.m in Sources */,
 				C5CF97C01D20F8FB0027BA3B /* AppDelegate.m in Sources */,
 			);
