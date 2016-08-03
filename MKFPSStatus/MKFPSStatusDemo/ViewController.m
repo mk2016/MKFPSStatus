@@ -24,7 +24,15 @@
     self.tableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.tableView];
+    
+    UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(8, 100, [UIScreen mainScreen].bounds.size.width-16, 100)];
+    lab.text = @"我是个TableView 滚我 \n I'm a tableView scroll me";
+    lab.textAlignment = NSTextAlignmentCenter;
+    lab.font = [UIFont systemFontOfSize:20];
+    lab.textColor = [UIColor redColor];
+    [self.view addSubview:lab];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -33,17 +41,22 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+    for (NSInteger i = 0; i < 100; i++) {
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(i*4, 0, 4, 12)];
+        view.backgroundColor = [UIColor clearColor];
+        [cell addSubview:view];
+    }
+
     return cell;
-    
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 44;
+    return 12;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 100;
+    return 10000;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

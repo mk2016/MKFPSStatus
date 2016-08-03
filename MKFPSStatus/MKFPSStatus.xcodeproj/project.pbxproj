@@ -433,6 +433,7 @@
 				C5CF97AF1D20F8400027BA3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C5CF97B01D20F8400027BA3B /* Build configuration list for PBXNativeTarget "MKFPSStatusTests" */ = {
 			isa = XCConfigurationList;
@@ -441,6 +442,7 @@
 				C5CF97B21D20F8400027BA3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
