@@ -2,7 +2,7 @@
 
 [![CocoaPods Version](https://img.shields.io/cocoapods/v/MKFPSStatus.svg)](http://cocoadocs.org/docsets/MKFPSStatus)
 [![CocoaPods](https://img.shields.io/dub/l/vibe-d.svg)](https://raw.githubusercontent.com/mk2016/MKFPSStatus/master/LICENSE)
-[![CocoaPods](https://img.shields.io/pypi/format/Django.svg)](http://cocoadocs.org/docsets/MKFPSStatus)
+[![CocoaPods](https://img.shields.io/cocoapods/p/MKFPSStatus.svg)](http://cocoadocs.org/docsets/MKFPSStatus)
 [![MKDev](https://img.shields.io/badge/blog-MK-brightgreen.svg)](https://mk2016.github.io/)
 ####用于显示当前的FPS,给app性能提供直观的显示，为app的UI性能优化提供参考。
 
