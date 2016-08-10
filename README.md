@@ -7,8 +7,11 @@
 ####用于显示当前的FPS,给app性能提供直观的显示，为app的UI性能优化提供参考。
 
 ###导入
-* pod 'MKFPSStatus', '~> 1.0.2'
-* 将 MKFPSStatus 文件夹拖入你的项目中，#import "MKFPSStatus.h" 即可
+* cocoapods  
+	pod 'MKFPSStatus', '~> 1.0.2'
+	
+* Manually (手动导入)  
+ 	将 MKFPSStatus 文件夹拖入你的项目中，#import "MKFPSStatus.h" 即可
 
 ###用法
 在 appDelegate.m 中
