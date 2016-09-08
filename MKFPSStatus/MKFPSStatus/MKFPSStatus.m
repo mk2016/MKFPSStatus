@@ -7,6 +7,7 @@
 //
 
 #import "MKFPSStatus.h"
+#import "MKViewController.h"
 
 @implementation MKFPSStatus{
     CADisplayLink   *_displayLink;
@@ -32,7 +33,7 @@
         self.hidden = YES;
         
         if([[UIDevice currentDevice].systemVersion floatValue] >= 9.0){
-            self.rootViewController = [UIViewController new];
+            self.rootViewController = [[MKViewController alloc] init];
         }
         
         [[NSNotificationCenter defaultCenter] addObserver:self
