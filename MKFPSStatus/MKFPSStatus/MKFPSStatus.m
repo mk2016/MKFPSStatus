@@ -8,12 +8,16 @@
 
 #import "MKFPSStatus.h"
 
-@implementation MKFPSStatus{
+@interface MKFPSStatus(){
     CADisplayLink   *_displayLink;
     NSTimeInterval  _lastTime;
     NSUInteger      _count;
-    CATextLayer     *_fpsTextLayer;
 }
+
+@property (nonatomic, strong)UILabel *fpsLabel;
+@end
+
+@implementation MKFPSStatus
 
 + (instancetype)sharedInstance {
     static MKFPSStatus *sharedInstance = nil;
@@ -40,14 +44,13 @@
         [_displayLink setPaused:YES];
         [_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
         
-        _fpsTextLayer = [CATextLayer layer];
-        [_fpsTextLayer setFrame:CGRectMake(([[UIScreen mainScreen] bounds].size.width-50)/2+50, 3, 54, 16)];
-        [_fpsTextLayer setFontSize: 13.0f];
-        [_fpsTextLayer setContentsScale: [UIScreen mainScreen].scale];
-        [_fpsTextLayer setForegroundColor: [UIColor greenColor].CGColor];
-//        [_fpsTextLayer setBackgroundColor:[UIColor grayColor].CGColor];
-        [_fpsTextLayer setBackgroundColor:[UIColor clearColor].CGColor];
-        [_fpsTextLayer setAlignmentMode:kCAAlignmentCenter];
+        // fpsLabel
+        _fpsLabel = [[UILabel alloc] initWithFrame:CGRectMake(([[UIScreen mainScreen] bounds].size.width-50)/2+50, 0, 54, 20)];
+        _fpsLabel.font = [UIFont systemFontOfSize:13];
+        _fpsLabel.textColor = [UIColor colorWithRed:0.33 green:0.84 blue:0.43 alpha:1.00];
+        _fpsLabel.backgroundColor = [UIColor grayColor];
+        _fpsLabel.textAlignment = NSTextAlignmentCenter;
+        
     }
     return self;
 }
@@ -66,11 +69,11 @@
     _count = 0;
     
     NSString *text = [NSString stringWithFormat:@"%d FPS",(int)round(fps)];
-    [_fpsTextLayer setString: text];
+    _fpsLabel.text = text;
     
     CGFloat progress = fps / 60.0;
     UIColor *color = [UIColor colorWithHue:0.27 * (progress - 0.2) saturation:1 brightness:0.9 alpha:1];
-    [_fpsTextLayer setForegroundColor:color.CGColor];
+    _fpsLabel.textColor = color;
 }
 
 - (void)applicationDidBecomeActiveNotification {
@@ -81,34 +84,30 @@
     [_displayLink setPaused:YES];
 }
 
-//- (void)becomeKeyWindow {
-//    //prevent self to be key window
-//    [self setHidden: YES];
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [self setHidden: NO];
-//    });
-//}
-
 #pragma mark - ***** Open ******
 - (void)open{
-    [_fpsTextLayer removeFromSuperlayer];
-    [[UIApplication sharedApplication].keyWindow.layer addSublayer:_fpsTextLayer];
+    [_fpsLabel removeFromSuperview];
+    UIView* bgView = [UIApplication sharedApplication].keyWindow;
+    [bgView addSubview:_fpsLabel];
+    [[UIApplication sharedApplication].keyWindow bringSubviewToFront:_fpsLabel];
     [_displayLink setPaused:NO];
 }
 
 - (void)openOnView:(UIView *)view frame:(CGRect)frame{
-    [_fpsTextLayer removeFromSuperlayer];
+    [_fpsLabel removeFromSuperview];
     if (frame.size.width == 0 && frame.size.height == 0) {
         frame = CGRectMake(([[UIScreen mainScreen] bounds].size.width-50)/2+50, 3-20, 54, 16);
     }
-    [view.layer addSublayer:_fpsTextLayer];
-    _fpsTextLayer.frame = frame;
+    
+    [view addSubview:_fpsLabel];
+    [[UIApplication sharedApplication].keyWindow bringSubviewToFront:_fpsLabel];
+    _fpsLabel.frame = frame;
     [_displayLink setPaused:NO];
 }
 
 - (void)close{
     [_displayLink setPaused:YES];
-    [_fpsTextLayer removeFromSuperlayer];
+    [_fpsLabel removeFromSuperview];
 }
 
 - (void)dealloc{

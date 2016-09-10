@@ -25,7 +25,7 @@
     ViewController* vc = [[ViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = nav;
-    [self.window makeKeyWindow];
+    [self.window makeKeyAndVisible];
     
 #ifdef DEBUG
     [[MKFPSStatus sharedInstance] open];
