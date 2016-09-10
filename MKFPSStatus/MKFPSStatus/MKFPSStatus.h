@@ -13,5 +13,7 @@
 + (MKFPSStatus *)sharedInstance;
 
 - (void)open;
+- (void)openOnView:(UIView *)view frame:(CGRect)frame;
+
 - (void)close;
 @end

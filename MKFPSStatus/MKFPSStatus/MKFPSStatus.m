@@ -45,7 +45,8 @@
         [_fpsTextLayer setFontSize: 13.0f];
         [_fpsTextLayer setContentsScale: [UIScreen mainScreen].scale];
         [_fpsTextLayer setForegroundColor: [UIColor greenColor].CGColor];
-        [_fpsTextLayer setBackgroundColor:[UIColor grayColor].CGColor];
+//        [_fpsTextLayer setBackgroundColor:[UIColor grayColor].CGColor];
+        [_fpsTextLayer setBackgroundColor:[UIColor clearColor].CGColor];
         [_fpsTextLayer setAlignmentMode:kCAAlignmentCenter];
     }
     return self;
@@ -90,10 +91,20 @@
 
 #pragma mark - ***** Open ******
 - (void)open{
-    [[((NSObject <UIApplicationDelegate> *)([UIApplication sharedApplication].delegate)) window].rootViewController.view.layer addSublayer:_fpsTextLayer];
+    [_fpsTextLayer removeFromSuperlayer];
+    [[UIApplication sharedApplication].keyWindow.layer addSublayer:_fpsTextLayer];
     [_displayLink setPaused:NO];
 }
 
+- (void)openOnView:(UIView *)view frame:(CGRect)frame{
+    [_fpsTextLayer removeFromSuperlayer];
+    if (frame.size.width == 0 && frame.size.height == 0) {
+        frame = CGRectMake(([[UIScreen mainScreen] bounds].size.width-50)/2+50, 3-20, 54, 16);
+    }
+    [view.layer addSublayer:_fpsTextLayer];
+    _fpsTextLayer.frame = frame;
+    [_displayLink setPaused:NO];
+}
 
 - (void)close{
     [_displayLink setPaused:YES];
