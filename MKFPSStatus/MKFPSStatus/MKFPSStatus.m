@@ -7,39 +7,29 @@
 //
 
 #import "MKFPSStatus.h"
-#import "MKViewController.h"
 
 @implementation MKFPSStatus{
     CADisplayLink   *_displayLink;
-    CATextLayer     *_fpsTextLayer;
     NSTimeInterval  _lastTime;
     NSUInteger      _count;
+    CATextLayer     *_fpsTextLayer;
 }
 
 + (instancetype)sharedInstance {
     static MKFPSStatus *sharedInstance = nil;
     static dispatch_once_t once;
     dispatch_once(&once, ^{
-        sharedInstance = [[self alloc] init];
+        sharedInstance = [[MKFPSStatus alloc] init];
     });
     return sharedInstance;
 }
 
 - (id)init{
     if (self = [super init]) {
-        self.frame = CGRectMake(([[UIScreen mainScreen]bounds].size.width-50)/2+50, 0, 50, 20);
-        self.windowLevel = MKFPSStatusWindowLevel;
-        self.backgroundColor = [UIColor clearColor];
-        self.hidden = YES;
-        
-        if([[UIDevice currentDevice].systemVersion floatValue] >= 9.0){
-            self.rootViewController = [[MKViewController alloc] init];
-        }
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(applicationDidBecomeActiveNotification)
-                                                     name:UIApplicationDidBecomeActiveNotification
-                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver: self
+                                                 selector: @selector(applicationDidBecomeActiveNotification)
+                                                     name: UIApplicationDidBecomeActiveNotification
+                                                   object: nil];
         
         [[NSNotificationCenter defaultCenter] addObserver: self
                                                  selector: @selector(applicationWillResignActiveNotification)
@@ -51,13 +41,12 @@
         [_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
         
         _fpsTextLayer = [CATextLayer layer];
-        [_fpsTextLayer setFrame:CGRectMake(0, 3, self.bounds.size.width, self.bounds.size.height-3)];
-        [_fpsTextLayer setFontSize: 12.0f];
+        [_fpsTextLayer setFrame:CGRectMake(([[UIScreen mainScreen] bounds].size.width-50)/2+50, 3, 54, 16)];
+        [_fpsTextLayer setFontSize: 13.0f];
         [_fpsTextLayer setContentsScale: [UIScreen mainScreen].scale];
-        [_fpsTextLayer setBackgroundColor:[UIColor clearColor].CGColor];
         [_fpsTextLayer setForegroundColor: [UIColor greenColor].CGColor];
-        [_fpsTextLayer setAlignmentMode:kCAAlignmentLeft];
-        [self.layer addSublayer:_fpsTextLayer];
+        [_fpsTextLayer setBackgroundColor:[UIColor grayColor].CGColor];
+        [_fpsTextLayer setAlignmentMode:kCAAlignmentCenter];
     }
     return self;
 }
@@ -78,21 +67,9 @@
     NSString *text = [NSString stringWithFormat:@"%d FPS",(int)round(fps)];
     [_fpsTextLayer setString: text];
     
-    
     CGFloat progress = fps / 60.0;
     UIColor *color = [UIColor colorWithHue:0.27 * (progress - 0.2) saturation:1 brightness:0.9 alpha:1];
     [_fpsTextLayer setForegroundColor:color.CGColor];
-}
-
-- (void)open {
-    self.hidden = NO;
-    [_displayLink setPaused:NO];
-}
-
-
-- (void)close {
-    self.hidden = YES;
-    [_displayLink setPaused:YES];
 }
 
 - (void)applicationDidBecomeActiveNotification {
@@ -103,18 +80,28 @@
     [_displayLink setPaused:YES];
 }
 
-- (void)becomeKeyWindow {
-    //prevent self to be key window
-    [self setHidden: YES];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self setHidden: NO];
-    });
+//- (void)becomeKeyWindow {
+//    //prevent self to be key window
+//    [self setHidden: YES];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [self setHidden: NO];
+//    });
+//}
+
+#pragma mark - ***** Open ******
+- (void)open{
+    [[((NSObject <UIApplicationDelegate> *)([UIApplication sharedApplication].delegate)) window].rootViewController.view.layer addSublayer:_fpsTextLayer];
+    [_displayLink setPaused:NO];
 }
 
-- (void)dealloc {
+
+- (void)close{
     [_displayLink setPaused:YES];
-    [_displayLink invalidate];
+    [_fpsTextLayer removeFromSuperlayer];
+}
+
+- (void)dealloc{
+    [_displayLink setPaused:YES];
     [_displayLink removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
 }
 

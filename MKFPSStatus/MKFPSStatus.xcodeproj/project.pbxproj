@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C51597321D81761E00AE4D42 /* MKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C51597311D81761E00AE4D42 /* MKViewController.m */; };
 		C5CF97A91D20F8400027BA3B /* MKFPSStatusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C5CF97A81D20F8400027BA3B /* MKFPSStatusTests.m */; };
 		C5CF97C01D20F8FB0027BA3B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C5CF97B51D20F8FB0027BA3B /* AppDelegate.m */; };
 		C5CF97C11D20F8FB0027BA3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5CF97B61D20F8FB0027BA3B /* Assets.xcassets */; };
@@ -31,8 +30,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C51597301D81761E00AE4D42 /* MKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKViewController.h; sourceTree = "<group>"; };
-		C51597311D81761E00AE4D42 /* MKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKViewController.m; sourceTree = "<group>"; };
 		C5CF978B1D20F8400027BA3B /* MKFPSStatus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MKFPSStatus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5CF97A41D20F8400027BA3B /* MKFPSStatusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MKFPSStatusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5CF97A81D20F8400027BA3B /* MKFPSStatusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKFPSStatusTests.m; sourceTree = "<group>"; };
@@ -93,8 +90,6 @@
 			children = (
 				C5CF97CA1D20FA780027BA3B /* MKFPSStatus.h */,
 				C5CF97CB1D20FA780027BA3B /* MKFPSStatus.m */,
-				C51597301D81761E00AE4D42 /* MKViewController.h */,
-				C51597311D81761E00AE4D42 /* MKViewController.m */,
 			);
 			path = MKFPSStatus;
 			sourceTree = "<group>";
@@ -245,7 +240,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C51597321D81761E00AE4D42 /* MKViewController.m in Sources */,
 				C5CF97C71D20F8FB0027BA3B /* ViewController.m in Sources */,
 				C5CF97CC1D20FA780027BA3B /* MKFPSStatus.m in Sources */,
 				C5CF97C61D20F8FB0027BA3B /* main.m in Sources */,

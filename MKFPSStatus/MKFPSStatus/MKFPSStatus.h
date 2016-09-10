@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define MKFPSStatusWindowLevel UIWindowLevelStatusBar+90
-
-@interface MKFPSStatus : UIWindow
+@interface MKFPSStatus : NSObject
 
 + (MKFPSStatus *)sharedInstance;
 
