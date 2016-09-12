@@ -21,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor redColor];
     self.tableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -41,18 +42,17 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    for (NSInteger i = 0; i < 100; i++) {
+    for (NSInteger i = 0; i < [UIScreen mainScreen].bounds.size.width/4; i++) {
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(i*4, 0, 4, 12)];
-        view.backgroundColor = [UIColor clearColor];
+        view.backgroundColor = [UIColor colorWithRed:(255-i)/255.0f green:(255-i)/255.0f blue:(255-i)/255.0f alpha:1];
         [cell addSubview:view];
     }
-
     return cell;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 12;
+    return 40;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

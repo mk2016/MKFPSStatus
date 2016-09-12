@@ -45,12 +45,13 @@
         [_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
         
         // fpsLabel
-        _fpsLabel = [[UILabel alloc] initWithFrame:CGRectMake(([[UIScreen mainScreen] bounds].size.width-50)/2+50, 0, 54, 20)];
+        _fpsLabel = [[UILabel alloc] initWithFrame:CGRectMake(([[UIScreen mainScreen] bounds].size.width-50)/2+50, 3, 54, 16)];
         _fpsLabel.font = [UIFont systemFontOfSize:13];
         _fpsLabel.textColor = [UIColor colorWithRed:0.33 green:0.84 blue:0.43 alpha:1.00];
-        _fpsLabel.backgroundColor = [UIColor grayColor];
+        _fpsLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
         _fpsLabel.textAlignment = NSTextAlignmentCenter;
-        
+        _fpsLabel.layer.cornerRadius = 2;
+        _fpsLabel.layer.masksToBounds = YES;
     }
     return self;
 }
