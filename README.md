@@ -8,7 +8,7 @@
 
 ###导入
 * cocoapods  
-	pod 'MKFPSStatus', '~> 1.0.3'
+	pod 'MKFPSStatus', '~> 1.0.4'
 	
 * Manually (手动导入)  
  	将 MKFPSStatus 文件导入你的项目中，#import "MKFPSStatus.h" 即可
